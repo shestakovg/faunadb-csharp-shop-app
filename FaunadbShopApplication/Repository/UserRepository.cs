@@ -41,11 +41,6 @@ namespace FaunadbShopApplication.Repository
             return true;
         }
 
-        public bool FindUser(User user)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<User> GetUserByPhone(string phoneNumber)
         {
             if (String.IsNullOrEmpty(phoneNumber))

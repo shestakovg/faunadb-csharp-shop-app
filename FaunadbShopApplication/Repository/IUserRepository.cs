@@ -8,7 +8,6 @@ namespace FaunadbShopApplication.Repository
 {
     public interface IUserRepository
     {
-        bool FindUser(User user);
         Task<User> GetUserByPhone(string phoneNumber);
         Task<bool> AddUser(User user);
     }

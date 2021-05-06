@@ -42,11 +42,6 @@ namespace FaunadbShopApplication.Service
             return token;
         }
 
-        public bool SearchUser(User user)
-        {
-            return _repository.FindUser(user);
-        }
-
         private string generateJwtToken(User user)
         {
             // generate token that is valid for 7 days

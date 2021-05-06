@@ -20,7 +20,6 @@ namespace FaunadbShopApplication.Controllers
         }
         public IActionResult Index()
         {
-            //bool v = _userService.SearchUser(null);
             return View();
         }
 
