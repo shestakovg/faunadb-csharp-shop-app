@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -27,7 +28,7 @@ namespace FaunadbShopApplication.Service
             return await _repository.AddUser(user);
         }
 
-        public async Task<string> Authenticate(User user)
+        public async Task<AuthentificatedUser> Authenticate(User user)
         {
             var dbUser = await _repository.GetUserByPhone(user.PhoneNumber);
             if (dbUser == null)
@@ -39,17 +40,24 @@ namespace FaunadbShopApplication.Service
                 throw new ArgumentException($"Password is incorrect");
             }
             var token = generateJwtToken(dbUser);
-            return token;
+            AuthentificatedUser authUser = new AuthentificatedUser(dbUser) { Token = token };
+            return authUser;
         }
 
-        private string generateJwtToken(User user)
+        public Task<User> GetUserById(string id)
         {
-            // generate token that is valid for 7 days
+            return _repository.GetUserById(id);
+        }
+
+        private string generateJwtToken([NotNull]User user)
+        {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["AppSettings:Secret"]);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.IdRef) }),
+                Subject = new ClaimsIdentity(new[] { 
+                    new Claim("id", user.IdRef), 
+                    new Claim("phone", user.PhoneNumber) }),
                 Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

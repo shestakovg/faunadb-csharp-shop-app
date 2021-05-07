@@ -30,8 +30,8 @@ namespace FaunadbShopApplication.Test
                 Password = "",
                 PhoneNumber = "15417543013"
             };
-            string token = await userService.Authenticate(user);
-            Assert.IsEmpty(token, "Can't get token");
+            AuthentificatedUser token = await userService.Authenticate(user);
+            Assert.IsNotNull(token, "Can't get token");
         }
     }
 }

@@ -1,3 +1,4 @@
+using FaunadbShopApplication.Helpers;
 using FaunadbShopApplication.Repository;
 using FaunadbShopApplication.Service;
 using Microsoft.AspNetCore.Builder;
@@ -44,7 +45,7 @@ namespace FaunadbShopApplication
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseMiddleware<JwtMiddleware>();
             app.UseAuthorization();
             app.UseAuthentication();
 

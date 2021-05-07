@@ -1,6 +1,7 @@
 ﻿using FaunadbShopApplication.Dto;
+using FaunadbShopApplication.Helpers;
 using FaunadbShopApplication.Service;
-using Microsoft.AspNetCore.Authorization;
+//using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,18 +19,18 @@ namespace FaunadbShopApplication.Controllers
         {
             _userService = userService;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
 
         [HttpPost("authenticate")]
-        public async Task<string> Authentificate(User user)
+        public async Task<AuthentificatedUser> Authentificate(User user)
         {
             return await _userService.Authenticate(user);
         }
         
-        [Authorize]
+        //[Authorize]
         [HttpPost("adduser")]
         public async Task<bool> AddUser(User user)
         {

@@ -10,5 +10,6 @@ namespace FaunadbShopApplication.Repository
     {
         Task<User> GetUserByPhone(string phoneNumber);
         Task<bool> AddUser(User user);
+        Task<User> GetUserById(string id);
     }
 }

@@ -72,5 +72,13 @@ namespace FaunadbShopApplication.Repository
             var adminKey = Configuration["FaunaSettings:ADMIN_KEY"];
             return FaunaDbClient.GetClient(adminKey);
         }
+
+        public async Task<User> GetUserById(string id)
+        {
+            var client = GetClient();
+            Value value = await client.Query(Get(Ref(Collection(COLLECTION_NAME), id)));
+            User user = Decoder.Decode<User>(value.At("data"));
+            return user;
+        }
     }
 }
