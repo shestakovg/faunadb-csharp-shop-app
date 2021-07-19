@@ -13,7 +13,7 @@ Open file DataBaseScripts\CreateDatabase.fql and execute each script in Fauna co
    After that open browser and type link https://localhost:5001/swagger/index.html
 
 ### Rest services
-/api/User/ - creat new user and authentificate existing user
-/api/User/authenticate makes autentification.
-After that you should push Authorize button and input token value for other services
-/api/Product/ - product category and product services
+- /api/User/ - creat new user and authentificate existing user
+- /api/User/authenticate makes autentification.
+- After that you should push Authorize button and input token value for other services
+- /api/Product/ - product category and product services
