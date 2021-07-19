@@ -3,9 +3,9 @@ This is a sample application that demonstrates basics operations we can do perfo
 by using a Fauna client for C#
 
 #Prepare database
-Create empty Fauna database
-Create new server and admin key and fill key values in appsettings.json file (ADMIN_KEY and SERVER_KEY values). 
-Open file DataBaseScripts\CreateDatabase.fql and execute each script in Fauna concole.
+- Create empty Fauna database
+- Create new server and admin key and fill key values in appsettings.json file (ADMIN_KEY and SERVER_KEY values). 
+- Open file DataBaseScripts\CreateDatabase.fql and execute each script in Fauna concole.
 
 ### Running the application locally
 1. Open MS Visual Studio and press F5 button
