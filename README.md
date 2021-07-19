@@ -14,5 +14,6 @@ Open file DataBaseScripts\CreateDatabase.fql and execute each script in Fauna co
 
 ### Rest services
 /api/User/ - creat new user and authentificate existing user
-/api/User/authenticate makes autentification. After that you should push Authofize button and input token alue for other services
+/api/User/authenticate makes autentification.
+After that you should push Authorize button and input token value for other services
 /api/Product/ - product category and product services
