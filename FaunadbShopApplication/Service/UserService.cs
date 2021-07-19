@@ -28,7 +28,7 @@ namespace FaunadbShopApplication.Service
             return await _repository.AddUser(user);
         }
 
-        public async Task<AuthentificatedUser> Authenticate(User user)
+        public async Task<AuthentificatedUser> Authenticate(LoginUser user)
         {
             var dbUser = await _repository.GetUserByPhone(user.PhoneNumber);
             if (dbUser == null)

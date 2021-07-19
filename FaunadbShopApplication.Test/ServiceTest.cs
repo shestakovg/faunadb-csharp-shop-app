@@ -2,10 +2,6 @@
 using FaunadbShopApplication.Repository;
 using FaunadbShopApplication.Service;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FaunadbShopApplication.Test
@@ -25,7 +21,7 @@ namespace FaunadbShopApplication.Test
         [Test]
         public async Task AuthenticationTest()
         {
-            User user = new User()
+            LoginUser user = new LoginUser()
             {
                 Password = "",
                 PhoneNumber = "15417543013"

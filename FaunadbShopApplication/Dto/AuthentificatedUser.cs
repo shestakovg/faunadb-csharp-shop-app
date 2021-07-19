@@ -2,7 +2,7 @@
 
 namespace FaunadbShopApplication.Dto
 {
-    public class AuthentificatedUser: User
+    public class AuthentificatedUser: UserBase
     {
         [JsonPropertyName("token")]
         public string Token { get; set; }
@@ -16,7 +16,6 @@ namespace FaunadbShopApplication.Dto
             Address = user.Address;
             BirthDate = user.BirthDate;
             IdRef = user.IdRef;
-            Password = user.Password;
         }
     }
 }

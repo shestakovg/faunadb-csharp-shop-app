@@ -6,39 +6,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FaunadbShopApplication.Dto
 {
-    public class User
+    public class User: UserBase
     {
-        [Required]
-        [FaunaField("firstName")]
-        [JsonPropertyName("firstname")]
-        public string FirstName { get; set; }
-
-        [FaunaField("lastName")]
-        [JsonPropertyName("lastname")]
-        public string LastName { get; set; }
-
-        [FaunaField("birthday")]
-        [JsonPropertyName("birthday")]
-        public DateTime BirthDate { get; set; }
-
-        [Required]
-        [FaunaField("phone")]
-        [JsonPropertyName("phone")]
-        public string PhoneNumber { get; set; }
-
-        [FaunaField("address")]
-        [JsonPropertyName("address")]
-        public string Address { get; set; }
-
         [Required]
         [FaunaField("password")]
         [JsonPropertyName("password")]
         public string Password { get; set; }
-
-        [FaunaField("user_type")]
-        [JsonPropertyName("user_type")]
-        public UserRoles UserType;
-
-        public string IdRef;
     }
 }

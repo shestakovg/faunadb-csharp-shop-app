@@ -1,17 +1,13 @@
 ﻿using FaunadbShopApplication.Dto;
-using FaunadbShopApplication.Helpers;
 using FaunadbShopApplication.Service;
-//using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FaunadbShopApplication.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : Controller
     {
         private readonly IUserService _userService;
@@ -19,19 +15,23 @@ namespace FaunadbShopApplication.Controllers
         {
             _userService = userService;
         }
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
 
+        /// <summary>
+        /// Authentificate existing user
+        /// </summary>
+        /// <param name="user"></param>
         [HttpPost("authenticate")]
-        public async Task<AuthentificatedUser> Authentificate(User user)
+        public async Task<AuthentificatedUser> Authentificate(LoginUser user)
         {
             return await _userService.Authenticate(user);
         }
-        
-        //[Authorize]
-        [HttpPost("adduser")]
+
+        /// <summary>
+        /// Create new user
+        /// </summary>
+        /// <param name="user"></param>
+        [HttpPut("adduser")]
+        [AllowAnonymous]
         public async Task<bool> AddUser(User user)
         {
             return await _userService.AddUser(user);

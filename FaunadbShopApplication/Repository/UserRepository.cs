@@ -12,16 +12,15 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace FaunadbShopApplication.Repository
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : BaseRepository, IUserRepository
     {
-        private  IConfiguration Configuration { get; }
         private const string COLLECTION_NAME = "Users";
         private const string SEARCH_BY_PHONE_INDEX = "User_by_phone";
 
-        public UserRepository(IConfiguration configuration)
-        {
-            Configuration = configuration;
+        public UserRepository(IConfiguration configuration) : base(configuration) 
+        { 
         }
+
         public async Task<bool> AddUser([NotNull]User user)
         {
             var client = GetClient();
@@ -65,12 +64,6 @@ namespace FaunadbShopApplication.Repository
             User user = Decoder.Decode<User>(data.Value.First().At("data"));
             user.IdRef = (data.Value.First().At("ref") as RefV).Id;
             return user;
-        }
-
-        private FaunaClient GetClient() 
-        {
-            var adminKey = Configuration["FaunaSettings:ADMIN_KEY"];
-            return FaunaDbClient.GetClient(adminKey);
         }
 
         public async Task<User> GetUserById(string id)
